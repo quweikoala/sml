@@ -1,0 +1,3 @@
+[submodule "advisor"]
+	path = advisor
+	url = https://github.com/quweikoala/advisor
