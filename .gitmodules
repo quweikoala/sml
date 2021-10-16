@@ -1,6 +1,0 @@
-[submodule "advisor"]
-	path = advisor
-	url = https://github.com/quweikoala/advisor
-[submodule "subtest"]
-	path = subtest
-	url = https://github.com/quweikoala/subtest
