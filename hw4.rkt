@@ -34,6 +34,31 @@
   )
  )
 
+(define nats
+  (letrec ([f (lambda (x) (cons x (lambda () (f (+ x 1)))))])
+    (lambda () (f 1))))
+
+(define funny-number-stream
+  (letrec ([f (lambda (x) 
+              (if (= (modulo x 5) 0)
+               (cons (* -1 x) (lambda () (f (+ x 1))))
+               (cons x (lambda () (f (+ x 1))))
+       ))])
+    (lambda () (f 1))))
+
 (define powers-of-two
 (letrec ([f (lambda (x) (cons x (lambda () (f (* x 2)))))])
 (lambda () (f 2))))
+
+(define dan-then-dog
+  (letrec ([f (lambda (x) (if (= (modulo x 2) 0)
+                            (cons "dan.jpg" (lambda () (f (+ x 1))))
+                            (cons "dog.jpg" (lambda () (f (+ x 1))))))])
+    (lambda () (f 0))))
+
+
+(define (stream-add-zero s)
+  (letrec ([f (lambda (s)
+                (let ([pr (s)])
+                  (cons (cons 0 (car pr)) (lambda () (f (cdr pr))))))])
+  (lambda () (f s))))
